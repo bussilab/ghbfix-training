@@ -1,0 +1,46 @@
+integrator               = md			; MD integrator
+tinit                    = 0
+dt                       = 0.004		; 4 fs timestep
+nsteps                   = 750000000		; Number of steps => 3 us
+pbc			 = xyz			; Periodic boundary conditions in xyz
+comm-mode                = linear			
+nstcomm                  = 1
+comm-grps                = System
+cutoff-scheme            = Verlet
+
+; OUTPUT CONTROL OPTIONS
+nstxout                  = 0			; Do not want .trr-files
+nstxtcout                = 500			; But do want .xtc-files
+nstvout                  = 0			; No velocities in output
+nstfout                  = 0			; No forces in output
+nstlist			 = 5			; Update neighbor list between cut-offs
+nstlog			 = 10000
+ns_type			 = grid			; Fastest option
+nstenergy		 = 1000			; .edr-file output
+energygrps		 = System		; Energy groups
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+coulombtype              = pme			; Particle mesh Ewald, do not change
+rcoulomb                 = 1.0			; Real-space cut-off
+						; This is different from the paper but
+						; since PME is used this will only speed
+						; things up!
+rlist			 = 1.0			; Short-range neighbor list
+rlistlong		 = 1.0			; Long-range neighbor list 
+vdw-type                 = Cut-off
+rvdw                     = 1.0			; and the function goes to zero here
+DispCorr                 = EnerPres		; Dispersion corrections
+table-extension          = 1
+fourierspacing		 = 0.15			; PME grid
+
+; OPTIONS FOR WEAK COUPLING ALGORITHMS 
+tcoupl                   = nose-hoover		; Thermostat
+tc-grps                  = System   	; Couple lipids and SOL seperatly
+tau-t                    = 0.5  		; Time constant for temperature coupling
+ref-t                    = 298 	; Desired temperature (K)
+Pcoupl                   = no               	; Barostat
+
+; CONSTRAINTS
+constraints              = h-bonds		; Constrain all bonds
+constraint-algorithm     = Lincs		; With Lincs
+;unconstrained-start      = no
