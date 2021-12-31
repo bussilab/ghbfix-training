@@ -1,6 +1,9 @@
 # vim:ft=plumed
 # PDB that provides information on the molecules that are present in your system.
-LOAD FILE=./GHBFIX.cpp
+
+# with PLUMED <= 2.7, it is necessary to load this file
+# with PLUMED >= 2.8, GHBFIX is included in PLUMED and thus this file should not be loaded
+# LOAD FILE=./GHBFIX.cpp
 
 MOLINFO STRUCTURE=UUCG_native.pdb
 WHOLEMOLECULES ENTITY0=1-254
