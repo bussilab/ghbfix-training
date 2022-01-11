@@ -19,13 +19,12 @@
    You should have received a copy of the GNU Lesser General Public License
    along with plumed.  If not, see <http://www.gnu.org/licenses/>.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-#include "colvar/CoordinationBase.h"
+#include "CoordinationBase.h"
 #include "tools/SwitchingFunction.h"
-#include "colvar/ActionRegister.h"
+#include "ActionRegister.h"
 #include "core/PlumedMain.h"
 #include "core/Atoms.h"
 #include "tools/IFile.h"
-#include "tools/Units.h"
 
 #include <iostream>
 
@@ -37,15 +36,15 @@ namespace colvar {
 //+PLUMEDOC COLVAR GHBFIX
 /*
 Calculate the GHBFIX interaction energy among GROUPA and GROUPB
-using a potential defined in Kührová et al., Computer Folding of RNA Tetraloops: Identification of Key Force
-Field Deficiencies, JCTC, 2016. Essentially it is a switching function being -1 for small distances and 0 for large distances with a smooth interpolation in the middle. This can be scaled as desired by specifying interaction scaling parameters and energy units.
+using a potential defined in Kührová et al., Improving the performance of the AMBER RNA force field by
+tuning the hydrogen-bonding interactions, JCTC, 2019. Essentially it is a switching function being -1 for small distances and 0 for large distances with a smooth interpolation in the middle. This can be scaled as desired by specifying interaction scaling parameters and energy units.
 
 This collective variable can be used to analyze hydrogen bond interactions, or to generate bias potentials.
 Notice that the value of the GHBFIX is returned in plumed units (see \ref UNITS), if not specified differently via ENERGY_UNITS.
 
 \par Examples
-This example prints the GHBFIX interaction in kcal/mol between two groups of atoms using D_0, D_MAX and C 
-It is applied in the functional form introduced in the pioneering paper. 
+This example prints the GHBFIX interaction in kcal/mol between two groups of atoms using D_0, D_MAX and C
+It is applied in the functional form introduced in the pioneering paper.
 The types of atoms 1-6 should be defined in typesTable_examples.dat while their interaction parameters should be defined in scalingParameters_examples.dat in kBT units.
 
 \plumedfile
