@@ -2,10 +2,10 @@
 //
 // gHBfix program, version 1.3
 // original version of this file was attached as Supporting Information to the article
-// Kuhrova, P., Mlynsky, V., et al. IMPROVING THE PERFORMANCE OF THE RNA
+// Kuhrova, P., Mlynsky, V., et al. IMPROVING THE PERFORMANCE OF THE RNA 
 // AMBER FORCE FIELD BY TUNING THE HYDROGEN-BONDING INTERACTIONS,
 // J. Chem. Theory Comput. 2019, 15, 5, 3288–3305, (https://doi.org/10.1021/acs.jctc.8b00955)
-// gHBfix.cpp is the only source code for gHBfix program.
+// gHBfix.cpp is the only source code for gHBfix program. 
 // Copyright (C) 2022  Pavel Banas, Regional Centre of Advanced Technologies and Materials,
 //                     Czech Advanced Technology and Research Institute (CATRIN),
 //                     Palacky University Olomouc, Czech Republic
@@ -50,7 +50,7 @@ public:
  vector<int> m_acc_OH;
  vector<int> m_acc_nbO;
  vector<int> m_acc_bO;
- vector<int> m_acc_O4;
+ vector<int> m_acc_O4; 
 };
 
 nt::nt()
@@ -99,11 +99,11 @@ void nt::Init(char base, int last, bool ter5, bool ter3)
   m_don_OH.push_back(h2); // HO2'
   m_acc_OH.push_back(h2-1); // O2'
   if(ter3==true)
-  {
-    m_don_OH.push_back(h2+2);  // H3T
+  { 
+    m_don_OH.push_back(h2+2);  // H3T 
     m_acc_OH.push_back(h2+1);  // O3' (in case of O3'-H3T)
   }
-  if(ter5==true)
+  if(ter5==true) 
   {
     m_don_OH.push_back(last+1); // H5T
     m_acc_OH.push_back(last+2); // O5' (in case of O5'-H5T)
@@ -126,7 +126,7 @@ void nt::Init(char base, int last, bool ter5, bool ter3)
   int h1=last+12;
   if(ter5==true) h1-=2;
   switch(base)
-  {
+  { 
     case 'g':
     case 'G':
       m_don_NH.push_back(h1+9); // H1
@@ -267,7 +267,7 @@ int main(int argc, char* argv[])
 {
   if(argc<3)
   {
-    printf(" usage: %s <sequence> <output_file> [ -lambda <lambda> ] [ -hb-<don1>-<acc1> <eta1_value> -hb-<don2>-<acc2> <eta2_value> ] [ -plumed ] [ -cpptraj ]\n\nwrite sequence in the following form GCGCGC,GCGCGC (RNA strands separated by comma without any spaces, use P for protonated Cyt and M for protonated Ade)\ndonors: NH, OH\nacceptors: nbO, bO, OH (oxygens of OH groups), O4, O (base oxygens), N (base nitrogens)\nsuggested gHBfix setting: -hb-NH-N 1.0 -hb-OH-nbO -0.5 (-hb-OH-bO -0.5)\n-plumed writes gHBfix in plumed gHBfix format\n-cpptraj writes input for cpptraj rather than gHBfix input file\n",argv[0]);
+    printf(" usage: %s <sequence> <output_file> [ -lambda <lambda> ] [ -hb-<don1>-<acc1> <eta1_value> -hb-<don2>-<acc2> <eta2_value> ] [ -plumed ] [ -cpptraj ]\n\nwrite sequence in the following form GCGCGC,GCGCGC (RNA strands separated by comma without any spaces, use P for protonated Cyt and M for protonated Ade)\ndonors: NH, OH\nacceptors: nbO, bO, OH (oxygens of OH groups), O4, O (base oxygens), N (base nitrogens)\nsuggested gHBfix21 setting: -hb-NH-bO -1.0 -hb-NH-N 0.3 -hb-NH-nbO 0.1 -hb-NH-O4 -1.0 -hb-NH-O 0.8 -hb-NH-OH -1.0 -hb-OH-bO -1.5 -hb-OH-N 0.8 -hb-OH-nbO -1.5 -hb-OH-O4 -1.0 -hb-OH-O 0.9\n-plumed writes gHBfix in plumed gHBfix format\n-cpptraj writes input for cpptraj rather than gHBfix input file\n",argv[0]);
 //    printf("number of inputs: %d\n",argc);
 //    for(int ii=0; ii<argc;ii++) printf("arg %d: %s\n",argc,argv[ii]);
     return 0;
@@ -305,7 +305,7 @@ int main(int argc, char* argv[])
     else
     {
       printf("Error: incorrect character in the sequence %s",argv[1]);
-      printf(" usage: %s <sequence> <output_file> [ -lambda <lambda> ] [ -hb-<don1>-<acc1> <eta1_value> -hb-<don2>-<acc2> <eta2_value> ] [ -plumed ] [ -cpptraj ]\n\nwrite sequence in the following form GCGCGC,GCGCGC (RNA strands separated by comma without any spaces, use P for protonated Cyt and M for protonated Ade)\ndonors: NH, OH\nacceptors: nbO, bO, OH (oxygens of OH groups), O4, O (base oxygens), N (base nitrogens)\nsuggested gHBfix setting: -hb-NH-N 1.0 -hb-OH-nbO -0.5 (-hb-OH-bO -0.5)\n-plumed writes gHBfix in plumed gHBfix format\n-cpptraj writes input for cpptraj rather than gHBfix input file\n",argv[0]);
+      printf(" usage: %s <sequence> <output_file> [ -lambda <lambda> ] [ -hb-<don1>-<acc1> <eta1_value> -hb-<don2>-<acc2> <eta2_value> ] [ -plumed ] [ -cpptraj ]\n\nwrite sequence in the following form GCGCGC,GCGCGC (RNA strands separated by comma without any spaces, use P for protonated Cyt and M for protonated Ade)\ndonors: NH, OH\nacceptors: nbO, bO, OH (oxygens of OH groups), O4, O (base oxygens), N (base nitrogens)\nsuggested gHBfix21 setting: -hb-NH-bO -1.0 -hb-NH-N 0.3 -hb-NH-nbO 0.1 -hb-NH-O4 -1.0 -hb-NH-O 0.8 -hb-NH-OH -1.0 -hb-OH-bO -1.5 -hb-OH-N 0.8 -hb-OH-nbO -1.5 -hb-OH-O4 -1.0 -hb-OH-O 0.9\n-plumed writes gHBfix in plumed gHBfix format\n-cpptraj writes input for cpptraj rather than gHBfix input file\n",argv[0]);
       return -1;
     }
   }
@@ -347,7 +347,7 @@ int main(int argc, char* argv[])
       else if(strcmp(pch,"O4")==0) acc=3;
       else if(strcmp(pch,"O")==0) acc=4;
       else if(strcmp(pch,"N")==0) acc=5;
-      else
+      else 
       {
         printf("Error: incorrect acceptor in %s\n",argv[i]);
         return -1;
@@ -357,14 +357,14 @@ int main(int argc, char* argv[])
       {
         printf("Error: cannot read %s value\n",argv[i-1]);
         return -1;
-      }
+      }  
     }
     else if(strcmp(argv[i],"-plumed")==0) plumed=true;
     else if(strcmp(argv[i],"-cpptraj")==0) cpptraj=true;
     else
     {
       printf("Error: unexpected input in parsing command line\n");
-      printf(" usage: %s <sequence> <output_file> [ -lambda <lambda> ] [ -hb-<don1>-<acc1> <eta1_value> -hb-<don2>-<acc2> <eta2_value> ] [ -plumed ] [ -cpptraj ]\n\nwrite sequence in the following form GCGCGC,GCGCGC (RNA strands separated by comma without any spaces, use P for protonated Cyt and M for protonated Ade)\ndonors: NH, OH\nacceptors: nbO, bO, OH (oxygens of OH groups), O4, O (base oxygens), N (base nitrogens)\nsuggested gHBfix setting: -hb-NH-N 1.0 -hb-OH-nbO -0.5 (-hb-OH-bO -0.5)\n-plumed writes gHBfix in plumed gHBfix format\n-cpptraj writes input for cpptraj rather than gHBfix input file\n",argv[0]);
+      printf(" usage: %s <sequence> <output_file> [ -lambda <lambda> ] [ -hb-<don1>-<acc1> <eta1_value> -hb-<don2>-<acc2> <eta2_value> ] [ -plumed ] [ -cpptraj ]\n\nwrite sequence in the following form GCGCGC,GCGCGC (RNA strands separated by comma without any spaces, use P for protonated Cyt and M for protonated Ade)\ndonors: NH, OH\nacceptors: nbO, bO, OH (oxygens of OH groups), O4, O (base oxygens), N (base nitrogens)\nsuggested gHBfix21 setting: -hb-NH-bO -1.0 -hb-NH-N 0.3 -hb-NH-nbO 0.1 -hb-NH-O4 -1.0 -hb-NH-O 0.8 -hb-NH-OH -1.0 -hb-OH-bO -1.5 -hb-OH-N 0.8 -hb-OH-nbO -1.5 -hb-OH-O4 -1.0 -hb-OH-O 0.9\n-plumed writes gHBfix in plumed gHBfix format\n-cpptraj writes input for cpptraj rather than gHBfix input file\n",argv[0]);
       return -1;
     }
   }
@@ -504,7 +504,7 @@ int main(int argc, char* argv[])
       for(i=1;i<nd;i++) fprintf(output,"f_d%da,f_d%db,",i,i);
       fprintf(output,"f_d%da,f_d%db",nd,nd);
       fprintf(output," LABEL=b_d\n");
-    }
+    }    
     if(ne>0)
     {
       fprintf(output,"BIASVALUE ARG=");
@@ -513,21 +513,21 @@ int main(int argc, char* argv[])
       fprintf(output," LABEL=b_e\n");
     }
     if(nf>0)
-    {
+    { 
       fprintf(output,"BIASVALUE ARG=");
       for(i=1;i<nf;i++) fprintf(output,"f_f%da,f_f%db,",i,i);
       fprintf(output,"f_f%da,f_f%db",nf,nf);
       fprintf(output," LABEL=b_f\n");
     }
     if(ng>0)
-    {
+    { 
       fprintf(output,"BIASVALUE ARG=");
       for(i=1;i<ng;i++) fprintf(output,"f_g%da,f_g%db,",i,i);
       fprintf(output,"f_g%da,f_g%db",ng,ng);
       fprintf(output," LABEL=b_g\n");
     }
     if(nh>0)
-    {
+    { 
       fprintf(output,"BIASVALUE ARG=");
       for(i=1;i<nh;i++) fprintf(output,"f_h%da,f_h%db,",i,i);
       fprintf(output,"f_h%da,f_h%db",nh,nh);
@@ -541,21 +541,21 @@ int main(int argc, char* argv[])
       fprintf(output," LABEL=b_i\n");
     }
     if(nj>0)
-    {
+    { 
       fprintf(output,"BIASVALUE ARG=");
       for(i=1;i<nj;i++) fprintf(output,"f_j%da,f_j%db,",i,i);
       fprintf(output,"f_j%da,f_j%db",nj,nj);
       fprintf(output," LABEL=b_j\n");
     }
     if(nk>0)
-    {
+    { 
       fprintf(output,"BIASVALUE ARG=");
       for(i=1;i<nk;i++) fprintf(output,"f_k%da,f_k%db,",i,i);
       fprintf(output,"f_k%da,f_k%db",nk,nk);
       fprintf(output," LABEL=b_k\n");
     }
     if(nl>0)
-    {
+    { 
       fprintf(output,"BIASVALUE ARG=");
       for(i=1;i<nl;i++) fprintf(output,"f_l%da,f_l%db,",i,i);
       fprintf(output,"f_l%da,f_l%db",nl,nl);
